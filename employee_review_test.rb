@@ -39,4 +39,14 @@ class EmployeeReviewTest <Minitest::Test
     assert computerscience.name == "Computer Science"
   end
 
+  def test_07_get_total_salary_of_all_employees
+    computerscience = Department.new("Computer Science")
+    carolina = Employee.new("Carolina", 60000)
+    eric = Employee.new("Eric", 60000)
+    assert computerscience.add_employee(carolina)
+    assert computerscience.add_employee(eric)
+
+    assert_equal 120000, computerscience.total_salary
+  end
+
 end
