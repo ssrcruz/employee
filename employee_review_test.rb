@@ -49,4 +49,41 @@ class EmployeeReviewTest <Minitest::Test
     assert_equal 120000, computerscience.total_salary
   end
 
+  def test_08_add_employee_review_text
+    carolina = Employee.new("Carolina", 60000)
+    text = "Employee Review Text Goes Here"
+    carolina.add_review(text)
+    assert_equal text, carolina.text[0]
+  end
+
+  def test_09_employee_performing_satisfactorily_or_unsatisfactorily
+    carolina = Employee.new("Carolina", 60000)
+    ruben = Employee.new("Ruben", 70000)
+    ruben.satisfactorily
+    carolina.unsatisfactorily
+    assert_equal true, ruben.satisfactorily?
+    assert_equal false, carolina.satisfactorily?
+  end
+
+  def test_10_give_raise
+    carolina = Employee.new("Carolina", 60000)
+    carolina.give_raise(10000)
+
+    assert_equal 70000, carolina.salary
+  end
+
+  def test_11_give_raise_to_department
+    carolina = Employee.new("Carolina", 60000)
+    ruben = Employee.new("Ruben", 70000)
+    developers = Department.new("Software Developers")
+    developers.add_employee(carolina)
+    developers.add_employee(ruben)
+    ruben.satisfactorily = true
+    carolina.unsatisfactorily = false
+    developers.department_raise(10000)
+
+    assert_equal 60000, carolina.salary
+    assert_equal 80000, ruben.salary
+  end
+
 end
