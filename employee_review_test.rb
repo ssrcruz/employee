@@ -16,10 +16,10 @@ class EmployeeReviewTest <Minitest::Test
   end
 
   def test_03_add_employee_to_department
-    developers = Department.new("Computer Science")
+    computer_science = Department.new("Computer Science")
     ruben = Employee.new("Ruben", 50000)
-    assert developers.add_employee(ruben)
-    assert developers.roster.include?(ruben)
+    assert computer_science.add_employee(ruben)
+    assert computer_science.roster.include?(ruben)
   end
 
   def test_04_get_employee_name
@@ -51,14 +51,19 @@ class EmployeeReviewTest <Minitest::Test
 
   def test_08_add_employee_review_text
     carolina = Employee.new("Carolina", 60000)
-    text = "Employee Review Text Goes Here"
+    text = "This employee has been performing poorly"
     carolina.add_review(text)
     assert_equal text, carolina.text[0]
+
+    ruben = Employee.new("Ruben", 60000)
+    text = "This employee has been performing great and has exceeded expectations"
+    carolina.add_review(text)
+    assert_equal text, text[0]
   end
 
   def test_09_employee_performing_satisfactorily_or_unsatisfactorily
     carolina = Employee.new("Carolina", 60000)
-    ruben = Employee.new("Ruben", 70000)
+    ruben = Employee.new("Ruben", 50000)
     ruben.satisfactorily
     carolina.unsatisfactorily
     assert_equal true, ruben.satisfactorily?
