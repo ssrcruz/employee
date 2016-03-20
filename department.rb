@@ -8,10 +8,7 @@ class Department
   end
 
   def add_employee(employee)
-    #  @employees << name
     @roster << employee
-    # @employees
-    # @roster
   end
 
   def total_salary

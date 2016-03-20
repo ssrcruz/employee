@@ -51,14 +51,14 @@ class EmployeeReviewTest <Minitest::Test
 
   def test_08_add_employee_review_text
     carolina = Employee.new("Carolina", 60000)
-    text = "This employee has been performing poorly"
-    carolina.add_review(text)
-    assert_equal text, carolina.text[0]
+    review_text = "This employee has been performing poorly"
+    carolina.add_review(review_text)
+    assert_equal review_text, carolina.review_text[0]
 
     ruben = Employee.new("Ruben", 60000)
-    text = "This employee has been performing great and has exceeded expectations"
-    carolina.add_review(text)
-    assert_equal text, text[0]
+    review_text = "This employee has been performing great and has exceeded expectations"
+    ruben.add_review(review_text)
+    assert_equal review_text, ruben.review_text[0]
   end
 
   def test_09_employee_performing_satisfactorily_or_unsatisfactorily
