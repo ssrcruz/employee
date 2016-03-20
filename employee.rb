@@ -21,5 +21,9 @@ class Employee
     return @satisfactorily
   end
 
+  def give_raise(raise)
+    @salary = @salary + raise
+  end
+
 
 end
