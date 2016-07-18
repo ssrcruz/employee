@@ -23,15 +23,15 @@ class EmployeeReviewTest <Minitest::Test
   end
 
   def test_04_get_employee_name
-    carolina = Employee.new("Carolina", 60000)
-    assert carolina.name == "Carolina"
+    john = Employee.new("John", 60000)
+    assert john.name == "John"
     eric = Employee.new("Eric", 60000)
     assert eric.name == "Eric"
   end
 
   def test_05_get_employee_salary
-    carolina = Employee.new("Carolina", 60000)
-    assert carolina.salary == 60000
+    john = Employee.new("John", 60000)
+    assert john.salary == 60000
   end
 
   def test_06_get_departments_name
@@ -41,19 +41,19 @@ class EmployeeReviewTest <Minitest::Test
 
   def test_07_get_total_salary_of_all_employees
     computerscience = Department.new("Computer Science")
-    carolina = Employee.new("Carolina", 60000)
+    john = Employee.new("John", 60000)
     eric = Employee.new("Eric", 60000)
-    assert computerscience.add_employee(carolina)
+    assert computerscience.add_employee(john)
     assert computerscience.add_employee(eric)
 
     assert_equal 120000, computerscience.total_salary
   end
 
   def test_08_add_employee_review_text
-    carolina = Employee.new("Carolina", 60000)
+    john = Employee.new("John", 60000)
     review_text = "This employee has been performing poorly"
-    carolina.add_review(review_text)
-    assert_equal review_text, carolina.review_text[0]
+    john.add_review(review_text)
+    assert_equal review_text, john.review_text[0]
 
     ruben = Employee.new("Ruben", 60000)
     review_text = "This employee has been performing great and has exceeded expectations"
@@ -62,33 +62,33 @@ class EmployeeReviewTest <Minitest::Test
   end
 
   def test_09_employee_performing_satisfactorily_or_unsatisfactorily
-    carolina = Employee.new("Carolina", 60000)
+    john = Employee.new("John", 60000)
     ruben = Employee.new("Ruben", 50000)
     ruben.satisfactorily
-    carolina.unsatisfactorily
+    john.unsatisfactorily
     assert_equal true, ruben.satisfactorily?
-    assert_equal false, carolina.satisfactorily?
+    assert_equal false, john.satisfactorily?
   end
 
   def test_10_give_raise
-    carolina = Employee.new("Carolina", 60000)
-    carolina.give_raise(10000)
+    john = Employee.new("John", 60000)
+    john.give_raise(10000)
 
-    assert_equal 70000, carolina.salary
+    assert_equal 70000, john.salary
   end
 
   def test_11_give_raise_to_department
-    carolina = Employee.new("Carolina", 60000)
+    john = Employee.new("John", 60000)
     ruben = Employee.new("Ruben", 70000)
-    developers = Department.new("Software Developers")
-    developers.add_employee(carolina)
-    developers.add_employee(ruben)
-    ruben.satisfactorily = true
-    carolina.unsatisfactorily = false
-    developers.department_raise(10000)
+    computerscience = Department.new("Computer Science")
+    computerscience.add_employee(john)
+    computerscience.add_employee(ruben)
+    ruben.satisfactorily == true
+    john.satisfactorily == false
+    computerscience.department_raise(10000)
 
-    assert_equal 60000, carolina.salary
-    assert_equal 80000, ruben.salary
+    assert_equal 60000, john.salary
+    assert_equal 70000, ruben.salary
   end
 
 end

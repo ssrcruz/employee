@@ -18,6 +18,17 @@ class Department
     # It will inject 0 for each element and do 0 + employee.salary and then add that to the total
   end
 
+  def department_raise(raise)
+    satisfactorily_salary = raise
+    satisfactorily_employee = []
+    @employees.each do |n| # checks the employee list and checks if an employee is performing satisfactorily
+      if n.satisfactorily == true # if true it will add their current salary plus the raise
+        n.salary + satisfactorily_salary
+        satisfactorily_employee << n # it will then add the employee into the satisfactorily list
+      end
+    end
+
+  end
 
 
 
